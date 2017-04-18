@@ -1,0 +1,1881 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/mulesoft/osprey">osprey (v0.4.1)</a>
+</h1>
+<h4>Generate an API proxy from a RAML definition, which can be used locally or globally for validating API requests and responses</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.osprey">module osprey</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.Router">
+            function <span class="apidocSignatureSpan">osprey.</span>Router
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.addJsonSchema">
+            function <span class="apidocSignatureSpan">osprey.</span>addJsonSchema
+            <span class="apidocSignatureSpan">(schema, key)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.errorHandler">
+            function <span class="apidocSignatureSpan">osprey.</span>errorHandler
+            <span class="apidocSignatureSpan">(customResponder, fallbackLanguage, customMessages)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.errorHandler.createError">
+            function <span class="apidocSignatureSpan">osprey.</span>errorHandler.createError
+            <span class="apidocSignatureSpan">(requestErrors, status)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.errorHandler.responder">
+            function <span class="apidocSignatureSpan">osprey.</span>errorHandler.responder
+            <span class="apidocSignatureSpan">(req, res, errors, stack)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.loadFile">
+            function <span class="apidocSignatureSpan">osprey.</span>loadFile
+            <span class="apidocSignatureSpan">(path, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.proxy">
+            function <span class="apidocSignatureSpan">osprey.</span>proxy
+            <span class="apidocSignatureSpan">(middleware, addresses)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.security">
+            function <span class="apidocSignatureSpan">osprey.</span>security
+            <span class="apidocSignatureSpan">(raml, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.security.scope">
+            function <span class="apidocSignatureSpan">osprey.</span>security.scope
+            <span class="apidocSignatureSpan">(scope)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.server">
+            function <span class="apidocSignatureSpan">osprey.</span>server
+            <span class="apidocSignatureSpan">(raml, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.server.notFoundHandler">
+            function <span class="apidocSignatureSpan">osprey.</span>server.notFoundHandler
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.osprey.Router">module osprey.Router</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.Router.Router">
+            function <span class="apidocSignatureSpan">osprey.</span>Router
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.osprey.addJsonSchema">module osprey.addJsonSchema</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.addJsonSchema.addJsonSchema">
+            function <span class="apidocSignatureSpan">osprey.</span>addJsonSchema
+            <span class="apidocSignatureSpan">(schema, key)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.osprey.errorHandler">module osprey.errorHandler</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.errorHandler.errorHandler">
+            function <span class="apidocSignatureSpan">osprey.</span>errorHandler
+            <span class="apidocSignatureSpan">(customResponder, fallbackLanguage, customMessages)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.errorHandler.createError">
+            function <span class="apidocSignatureSpan">osprey.errorHandler.</span>createError
+            <span class="apidocSignatureSpan">(requestErrors, status)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.errorHandler.responder">
+            function <span class="apidocSignatureSpan">osprey.errorHandler.</span>responder
+            <span class="apidocSignatureSpan">(req, res, errors, stack)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.osprey.errorHandler.createError">module osprey.errorHandler.createError</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.errorHandler.createError.createError">
+            function <span class="apidocSignatureSpan">osprey.errorHandler.</span>createError
+            <span class="apidocSignatureSpan">(requestErrors, status)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.osprey.errorHandler.responder">module osprey.errorHandler.responder</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.errorHandler.responder.responder">
+            function <span class="apidocSignatureSpan">osprey.errorHandler.</span>responder
+            <span class="apidocSignatureSpan">(req, res, errors, stack)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.osprey.loadFile">module osprey.loadFile</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.loadFile.loadFile">
+            function <span class="apidocSignatureSpan">osprey.</span>loadFile
+            <span class="apidocSignatureSpan">(path, opts)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.osprey.proxy">module osprey.proxy</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.proxy.proxy">
+            function <span class="apidocSignatureSpan">osprey.</span>proxy
+            <span class="apidocSignatureSpan">(middleware, addresses)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.osprey.security">module osprey.security</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.security.security">
+            function <span class="apidocSignatureSpan">osprey.</span>security
+            <span class="apidocSignatureSpan">(raml, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.security.scope">
+            function <span class="apidocSignatureSpan">osprey.security.</span>scope
+            <span class="apidocSignatureSpan">(scope)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.osprey.security.scope">module osprey.security.scope</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.security.scope.scope">
+            function <span class="apidocSignatureSpan">osprey.security.</span>scope
+            <span class="apidocSignatureSpan">(scope)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.osprey.server">module osprey.server</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.server.server">
+            function <span class="apidocSignatureSpan">osprey.</span>server
+            <span class="apidocSignatureSpan">(raml, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.server.notFoundHandler">
+            function <span class="apidocSignatureSpan">osprey.server.</span>notFoundHandler
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.osprey.server.notFoundHandler">module osprey.server.notFoundHandler</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.osprey.server.notFoundHandler.notFoundHandler">
+            function <span class="apidocSignatureSpan">osprey.server.</span>notFoundHandler
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.osprey" id="apidoc.module.osprey">module osprey</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.Router" id="apidoc.element.osprey.Router">
+        function <span class="apidocSignatureSpan">osprey.</span>Router
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function router(options) {
+  return new Router(options)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+module.exports = app
+```
+
+You can initialize a `Router` with `ramlUriParameters`. This is helpful, since every router collects an object with merged URI parameters
+. For example, you can combine it with the `server` middleware to generate a router with your RAML URI parameters:
+
+```js
+var handler = osprey.server(raml)
+var router = osprey.<span class="apidocCodeKeywordSpan">Router</span>({ ramlUriParameters: handler.ramlUriParameters })
+
+// Uses an existing `userId` URI parameter, if it exists.
+router.get('/{userId}', function (req, res, next) {})
+```
+
+#### Handling Errors
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.addJsonSchema" id="apidoc.element.osprey.addJsonSchema">
+        function <span class="apidocSignatureSpan">osprey.</span>addJsonSchema
+        <span class="apidocSignatureSpan">(schema, key)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addJsonSchema = function (schema, key) {
+  methodHandler.addJsonSchema(schema, key)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* `error.ramlNotFound = true` A request 404'd because it was not specified in the RAML definition for the API
+
+#### Add JSON Schemas
+
+JSON schemas can be added to the application for when external JSON references are needed. From [osprey-method-handler](https://
+github.com/mulesoft-labs/osprey-method-handler#adding-json-schemas).
+
+```js
+osprey.<span class="apidocCodeKeywordSpan">addJsonSchema</span>(schema, key)
+```
+
+### Error Handler
+
+**Osprey** comes with support for a built-in [error handler middleware](https://github.com/mulesoft-labs/node-request-error-handler
+) that formats request errors for APIs. It comes with built-in i18n with some languages already included for certain formats ([_help
+ us add more!_](https://github.com/mulesoft-labs/node-request-error-handler/pulls)). The default fallback language is `en` and the
+ default responder renders JSON, XML, HTML and plain text - all options are overridable.
+
+```js
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.errorHandler" id="apidoc.element.osprey.errorHandler">
+        function <span class="apidocSignatureSpan">osprey.</span>errorHandler
+        <span class="apidocSignatureSpan">(customResponder, fallbackLanguage, customMessages)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function handler(customResponder, fallbackLanguage, customMessages) {
+  // Custom messages or fallback language as first argument.
+  if (typeof customResponder !== 'function') {
+    fallbackLanguage = customResponder
+    customResponder = null
+  }
+
+  // Custom messages as second argument.
+  if (typeof fallbackLanguage !== 'string') {
+    customMessages = fallbackLanguage
+    fallbackLanguage = null
+  }
+
+  var respond = customResponder || responder
+  var fallback = fallbackLanguage || 'en'
+  var errorMessages = ERROR_MESSAGES
+  var isProd = process.env.NODE_ENV === 'production'
+
+  // Allow custom i18n messages to merge over defaults.
+  if (customMessages) {
+    errorMessages = extend(customMessages, extend(errorMessages, {
+      json: extend(errorMessages.json, customMessages.json),
+      headers: extend(errorMessages.headers, customMessages.headers),
+      query: extend(errorMessages.query, customMessages.query),
+      form: extend(errorMessages.form, customMessages.form),
+      xml: extend(errorMessages.xml, customMessages.xml)
+    }))
+  }
+
+  return function (err, req, res, next) {
+    // Only handling formatted validation errors.
+    if (!Array.isArray(err.requestErrors)) {
+      return next(err)
+    }
+
+    var errors = err.requestErrors
+    var negotiator = new Negotiator(req)
+    var stack = isProd ? undefined : err.stack
+
+    // Extend default error objects with i18n messages.
+    var data = errors.map(function (error) {
+      var messages = errorMessages[error.type]
+
+      if (!messages || !messages[error.keyword]) {
+        debug('No message for "%s %s"', error.type, error.keyword)
+
+        return error
+      }
+
+      var language = fallback
+
+      if (req.headers['accept-language']) {
+        language = negotiator.language(Object.keys(messages[error.keyword]))
+      }
+
+      // Fall back to English when the preferred language is unavailable.
+      if (!language) {
+        debug(
+          'No messages available for "%s %s" in %s, falling back to %s',
+          error.type,
+          error.keyword,
+          negotiator.languages().join(', '),
+          fallback
+        )
+
+        language = fallback
+      }
+
+      var message = messages[error.keyword][language]
+
+      if (!message) {
+        debug(
+          'No messages available for "%s %s", create a "%s" message as the fallback',
+          error.type,
+          error.keyword,
+          fallback
+        )
+
+        return error
+      }
+
+      return extend(error, { message: message(error) })
+    })
+
+    res.statusCode = err.status || err.statusCode || 500
+    res.setHeader('X-Content-Type-Options', 'nosniff')
+
+    return respond(req, res, data, stack)
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+**Osprey** comes with support for a built-in [error handler middleware](https://github.com/mulesoft-labs/node-request-error-handler
+) that formats request errors for APIs. It comes with built-in i18n with some languages already included for certain formats ([_help
+ us add more!_](https://github.com/mulesoft-labs/node-request-error-handler/pulls)). The default fallback language is `en` and the
+ default responder renders JSON, XML, HTML and plain text - all options are overridable.
+
+```js
+var osprey = require('osprey')
+var app = require('express')()
+
+// It's best to use the default responder, but it's overridable if you need it.
+app.use(osprey.<span class="apidocCodeKeywordSpan">errorHandler</span>(function (req, res, errors, stack) { /* Override */ }, &amp;#
+x27;en'))
+```
+
+You can override the i18n messages or provide your own by passing a nested object that conforms to the following interface:
+
+```js
+interface CustomMessages {
+[type: string]: {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.errorHandler.createError" id="apidoc.element.osprey.errorHandler.createError">
+        function <span class="apidocSignatureSpan">osprey.</span>errorHandler.createError
+        <span class="apidocSignatureSpan">(requestErrors, status)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createError(requestErrors, status) {
+  invariant(Array.isArray(requestErrors), 'Argument requestErrors must be an array')
+
+  // Validate request error objects.
+  requestErrors.forEach(function (requestError) {
+    invariant(typeof requestError === 'object', 'Request errors must be an object')
+    invariant(typeof requestError.type === 'string', 'Request errors must have a type string')
+    invariant(typeof requestError.keyword === 'string', 'Request errors must have a type string')
+    invariant(typeof requestError.message === 'string', 'Request errors must have a message string to fallback on when i18n fails
+')
+  })
+
+  var err = new Error('Request Error')
+  err.status = err.statusCode = status || 400
+  err.requestErrors = requestErrors
+  return err
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.errorHandler.responder" id="apidoc.element.osprey.errorHandler.responder">
+        function <span class="apidocSignatureSpan">osprey.</span>errorHandler.responder
+        <span class="apidocSignatureSpan">(req, res, errors, stack)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function responder(req, res, errors, stack) {
+  var negotiator = new Negotiator(req)
+
+  switch (negotiator.mediaType(['application/json', 'text/html', 'text/xml'])) {
+    case 'application/json':
+      sendJson(req, res, errors, stack)
+      return
+    case 'text/html':
+      sendHtml(req, res, errors, stack)
+      return
+    case 'text/xml':
+      sendXml(req, res, errors, stack)
+      return
+    default:
+      sendPlain(req, res, errors, stack)
+      return
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.loadFile" id="apidoc.element.osprey.loadFile">
+        function <span class="apidocSignatureSpan">osprey.</span>loadFile
+        <span class="apidocSignatureSpan">(path, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">loadFile = function (path, opts) {
+  var options = opts || {}
+
+  return require('raml-1-parser')
+    .loadRAML(path, { rejectOnErrors: true })
+    .then(function (ramlApi) {
+      var raml = ramlApi.expand(true).toJSON({
+        serializeMetadata: false
+      })
+      var middleware = []
+      var handler = server(raml, extend({ RAMLVersion: ramlApi.RAMLVersion() }, options.server))
+      var error = errorHandler(options.errorHandler)
+
+      if (options.security) {
+        middleware.push(security(raml, options.security))
+      }
+
+      middleware.push(handler)
+
+      if (!options.disableErrorInterception) {
+        middleware.push(error)
+      }
+
+      var result = compose(middleware)
+      result.ramlUriParameters = handler.ramlUriParameters
+      return result
+    })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var join = require('path').join
+var app = express()
+
+var path = join(__dirname, 'assets', 'api.raml')
+
+// Be careful, this uses all middleware functions by default. You might just
+// want to use each one separately instead - `osprey.server`, etc.
+osprey.<span class="apidocCodeKeywordSpan">loadFile</span>(path)
+  .then(function (middleware) {
+app.use(middleware)
+
+app.use(function (err, req, res, next) {
+  // Handle errors.
+})
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.proxy" id="apidoc.element.osprey.proxy">
+        function <span class="apidocSignatureSpan">osprey.</span>proxy
+        <span class="apidocSignatureSpan">(middleware, addresses)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createProxy(middleware, addresses) {
+  var fns = []
+
+  var addrs = arrify(addresses).map(function (address) {
+    var addr = url.format(address)
+
+    // Remove any trailing slashes from the address.
+    addr = addr.replace(/\/$/, '')
+
+    return /^\w+:\/\//.test(addr) ? addr : 'http://' + addr
+  })
+
+  fns.push(middleware)
+
+  fns.push(function proxyAddress (req, res, next) {
+    var addr = addrs.shift()
+    var opts = url.parse(addr + req.url)
+
+    // Push the address back onto the array.
+    addrs.push(addr)
+
+    // Proxy request headers (minus now invalid content-length).
+    opts.method = req.method
+    opts.headers = req.headers
+
+    if (req.form) {
+      var formData = new FormData()
+
+      req.form.on('file', function (name, stream, filename, encoding, type) {
+        formData.append(name, stream, {
+          filename: filename,
+          contentType: type
+        })
+      })
+
+      req.form.on('field', function (name, value) {
+        formData.append(name, value)
+      })
+
+      req.form.on('finish', function () {
+        // Remove the old `Content-Type` header which has an invalid boundary.
+        delete req.headers['content-type']
+        delete req.headers['content-length']
+
+        // Add form data boundary and content length headers.
+        opts.headers = formData.getHeaders(req.headers)
+
+        return formData.pipe(proxyRequest(opts, res, next))
+      })
+
+      req.form.on('error', next)
+
+      return req.pipe(req.form)
+    }
+
+    var proxy = proxyRequest(opts, res, next)
+
+    if (req.body) {
+      var body = ''
+
+      if (is(req, 'urlencoded')) {
+        body = querystring.stringify(req.body)
+      } else if (is(req, 'json')) {
+        body = JSON.stringify(req.body)
+      } else {
+        // Support XML throughput.
+        body = req.body
+      }
+
+      opts.headers['content-length'] = String(Buffer.byteLength(body))
+      proxy.write(body)
+      proxy.end()
+      return
+    }
+
+    return req._readableState.ended ? proxy.end() : req.pipe(proxy)
+  })
+
+  return createHttpHandler(compose(fns))
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+})
+```
+
+### Proxy
+
+```js
+osprey.<span class="apidocCodeKeywordSpan">proxy</span>(middleware, addresses)
+```
+
+Pass in an Osprey middleware function with an array of addresses to proxy to and you have a fully-functioning validation and/or
+security proxy.
+
+## License
+
+Apache 2.0
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.security" id="apidoc.element.osprey.security">
+        function <span class="apidocSignatureSpan">osprey.</span>security
+        <span class="apidocSignatureSpan">(raml, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createSecurity(raml, opts) {
+  var middleware = []
+  var options = extend(opts)
+  var authenticate = {}
+
+  // Create scheme handlers from RAML.
+  if (Array.isArray(raml.securitySchemes)) {
+    raml.securitySchemes.forEach(function (schemes) {
+      Object.keys(schemes).forEach(function (key) {
+        var scheme = schemes[key]
+        var handlerOptions = options[key]
+
+        if (!handlerOptions) {
+          console.warn('No options configured for security scheme "%s"', key)
+          return
+        }
+
+        var res = handler(scheme, handlerOptions, key)
+
+        invariant(
+          res &amp;&amp; typeof res.handler === 'function',
+          'Security schemes must provide a `handler` function that can ' +
+          'accept  options and return middleware for securing resources'
+        )
+
+        // Alias the handler for creating authentication middleware.
+        authenticate[key] = res.handler
+
+        // Mount routers in order of security schemes.
+        // Note: Not all schemes need a router. E.g. "Basic Authentication".
+        if (res.router) {
+          middleware.push(res.router)
+        }
+      })
+    })
+  }
+
+  middleware.push(resources(raml.resources, function (method, path) {
+    var securedBy = method.securedBy || raml.securedBy
+
+    if (!Array.isArray(securedBy) || securedBy.length === 0) {
+      return
+    }
+
+    var handlers = []
+    var anonymous = false
+    var middleware
+
+    for (var i = 0; i &lt; securedBy.length; i++) {
+      var secured = securedBy[i]
+
+      // Support anonymous access.
+      if (secured == null) {
+        anonymous = true
+        continue
+      }
+
+      // Handle the basic case of a security string.
+      if (typeof secured === 'string') {
+        if (authenticate.hasOwnProperty(secured)) {
+          middleware = compose(authenticate[secured](null, path))
+
+          handlers.push(middleware)
+        } else {
+          debug('Path "%s" not secured with "%s"', path, secured)
+        }
+        continue
+      }
+
+      // Support more complex object options.
+      Object.keys(secured).forEach(function (key) {
+        if (authenticate.hasOwnProperty(key)) {
+          middleware = compose(authenticate[key](secured[key], path))
+
+          handlers.push(middleware)
+        } else {
+          debug('Path "%s" not secured with "%s"', path, key)
+        }
+      })
+    }
+
+    // Create a single middleware from an array of handlers.
+    return authenticationStack(handlers, anonymous)
+  }))
+
+  return compose(middleware)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+**Want to format your own request errors?** If you emit an error with a `.status` property of "client error" (`400` - `
+499`) and an array of `requestErrors`, it will automatically be rendered as the API response (using `status` as the response status
+ code).
+
+### Security
+
+```js
+osprey.<span class="apidocCodeKeywordSpan">security</span>(raml, options)
+```
+
+Osprey accepts an options object that maps object keys to the security scheme name in the RAML definition.
+
+#### OAuth 2.0
+
+Provided by [OAuth2orize](https://github.com/jaredhanson/oauth2orize) and [Passport](https://github.com/jaredhanson/passport).
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.security.scope" id="apidoc.element.osprey.security.scope">
+        function <span class="apidocSignatureSpan">osprey.</span>security.scope
+        <span class="apidocSignatureSpan">(scope)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function enforceScope(scope) {
+  var scopes = arrify(scope)
+
+  if (scopes.length === 0) {
+    throw new TypeError('Expected a scope or array of scopes, but got: ' + scope)
+  }
+
+  return function scope (req, res, next) {
+    var userScopes = arrify(req.authInfo.scope)
+
+    // Find one scope the user has and authorize access.
+    for (var i = 0; i &lt; scopes.length; i++) {
+      if (userScopes.indexOf(scopes[i]) &gt; -1) {
+        return next()
+      }
+    }
+
+    return next(new TokenError('User unsupported scope: ' + scopes, 'invalid_scope'))
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+**Osprey** will automatically block requests with invalid scopes, when defined in RAML using the [inline option](https://github.
+com/raml-org/raml-spec/blob/master/raml-0.8.md#usage-applying-a-security-scheme-to-an-api) syntax.
+
+```raml
+/example:
+  securedBy: [oauth_2_0: { scopes: [ ADMINISTRATOR ] } ]
+```
+
+To implement scope validation in your own application, without RAML, use `osprey.<span class="apidocCodeKeywordSpan">security.scope
+</span>('example')` and users without the required scope will be rejected.
+
+```js
+app.get('/foo/bar', osprey.security.scope('example'), function (req, res) {
+  res.send('hello, world')
+})
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.server" id="apidoc.element.osprey.server">
+        function <span class="apidocSignatureSpan">osprey.</span>server
+        <span class="apidocSignatureSpan">(raml, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createServer(raml, opts) {
+  var options = opts || {}
+
+  if (raml.hasOwnProperty('types')) {
+    raml = expandTypes(raml)
+  }
+
+  var resourceHandler = resources(raml.resources, function (schema, path) {
+    return handler(schema, path, schema.method, options)
+  })
+
+  var app = router({ ramlUriParameters: resourceHandler.ramlUriParameters, RAMLVersion: options.RAMLVersion })
+  var corsOpts = typeof options.cors === 'boolean' ? undefined : options.cors
+
+  if (options.cors) {
+    var cors = require('cors')
+
+    app.options('*', cors(corsOpts))
+    app.use(cors(corsOpts))
+  }
+
+  if (options.compression) {
+    var compression = require('compression')
+
+    app.use(compression())
+  }
+
+  app.use(resourceHandler)
+
+  if (options.notFoundHandler !== false) {
+    app.use(notFoundHandler)
+  }
+
+  return app
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+**Please note:** The middleware function does not use the RAML `baseUri`. Make sure you mount the application under the correct
+path. E.g. `app.use('/v1', middleware)`.
+
+**Please note:** `osprey.loadFile` is shorthand for `ramlParser.loadFile -&gt; [osprey.security, osprey.server, osprey.errorHandler
+]`.
+
+### Server (Resource Handling)
+
+```js
+var handler = osprey.<span class="apidocCodeKeywordSpan">server</span>(raml, options)
+
+console.log(handler) //=&gt; function (req, res, next) {}
+
+console.log(handler.ramlUriParameters) //=&gt; {} // A merged object of used URI parameters.
+```
+
+Undefined API requests will _always_ be rejected with a 404.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.server.notFoundHandler" id="apidoc.element.osprey.server.notFoundHandler">
+        function <span class="apidocSignatureSpan">osprey.</span>server.notFoundHandler
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function notFoundHandler(req, res, next) {
+  // Check for existence of the method handler.
+  if (req.resourcePath) {
+    return next()
+  }
+
+  var notFoundError = new Error(
+    req.method + ' ' + parseurl(req).pathname +
+    ' does not exist in the RAML for this application'
+  )
+
+  notFoundError.ramlNotFound = true
+  notFoundError.status = notFoundError.statusCode = 404
+
+  return next(notFoundError)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.osprey.Router" id="apidoc.module.osprey.Router">module osprey.Router</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.Router.Router" id="apidoc.element.osprey.Router.Router">
+        function <span class="apidocSignatureSpan">osprey.</span>Router
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function router(options) {
+  return new Router(options)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+module.exports = app
+```
+
+You can initialize a `Router` with `ramlUriParameters`. This is helpful, since every router collects an object with merged URI parameters
+. For example, you can combine it with the `server` middleware to generate a router with your RAML URI parameters:
+
+```js
+var handler = osprey.server(raml)
+var router = osprey.<span class="apidocCodeKeywordSpan">Router</span>({ ramlUriParameters: handler.ramlUriParameters })
+
+// Uses an existing `userId` URI parameter, if it exists.
+router.get('/{userId}', function (req, res, next) {})
+```
+
+#### Handling Errors
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.osprey.addJsonSchema" id="apidoc.module.osprey.addJsonSchema">module osprey.addJsonSchema</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.addJsonSchema.addJsonSchema" id="apidoc.element.osprey.addJsonSchema.addJsonSchema">
+        function <span class="apidocSignatureSpan">osprey.</span>addJsonSchema
+        <span class="apidocSignatureSpan">(schema, key)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addJsonSchema = function (schema, key) {
+  methodHandler.addJsonSchema(schema, key)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* `error.ramlNotFound = true` A request 404'd because it was not specified in the RAML definition for the API
+
+#### Add JSON Schemas
+
+JSON schemas can be added to the application for when external JSON references are needed. From [osprey-method-handler](https://
+github.com/mulesoft-labs/osprey-method-handler#adding-json-schemas).
+
+```js
+osprey.<span class="apidocCodeKeywordSpan">addJsonSchema</span>(schema, key)
+```
+
+### Error Handler
+
+**Osprey** comes with support for a built-in [error handler middleware](https://github.com/mulesoft-labs/node-request-error-handler
+) that formats request errors for APIs. It comes with built-in i18n with some languages already included for certain formats ([_help
+ us add more!_](https://github.com/mulesoft-labs/node-request-error-handler/pulls)). The default fallback language is `en` and the
+ default responder renders JSON, XML, HTML and plain text - all options are overridable.
+
+```js
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.osprey.errorHandler" id="apidoc.module.osprey.errorHandler">module osprey.errorHandler</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.errorHandler.errorHandler" id="apidoc.element.osprey.errorHandler.errorHandler">
+        function <span class="apidocSignatureSpan">osprey.</span>errorHandler
+        <span class="apidocSignatureSpan">(customResponder, fallbackLanguage, customMessages)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function handler(customResponder, fallbackLanguage, customMessages) {
+  // Custom messages or fallback language as first argument.
+  if (typeof customResponder !== 'function') {
+    fallbackLanguage = customResponder
+    customResponder = null
+  }
+
+  // Custom messages as second argument.
+  if (typeof fallbackLanguage !== 'string') {
+    customMessages = fallbackLanguage
+    fallbackLanguage = null
+  }
+
+  var respond = customResponder || responder
+  var fallback = fallbackLanguage || 'en'
+  var errorMessages = ERROR_MESSAGES
+  var isProd = process.env.NODE_ENV === 'production'
+
+  // Allow custom i18n messages to merge over defaults.
+  if (customMessages) {
+    errorMessages = extend(customMessages, extend(errorMessages, {
+      json: extend(errorMessages.json, customMessages.json),
+      headers: extend(errorMessages.headers, customMessages.headers),
+      query: extend(errorMessages.query, customMessages.query),
+      form: extend(errorMessages.form, customMessages.form),
+      xml: extend(errorMessages.xml, customMessages.xml)
+    }))
+  }
+
+  return function (err, req, res, next) {
+    // Only handling formatted validation errors.
+    if (!Array.isArray(err.requestErrors)) {
+      return next(err)
+    }
+
+    var errors = err.requestErrors
+    var negotiator = new Negotiator(req)
+    var stack = isProd ? undefined : err.stack
+
+    // Extend default error objects with i18n messages.
+    var data = errors.map(function (error) {
+      var messages = errorMessages[error.type]
+
+      if (!messages || !messages[error.keyword]) {
+        debug('No message for "%s %s"', error.type, error.keyword)
+
+        return error
+      }
+
+      var language = fallback
+
+      if (req.headers['accept-language']) {
+        language = negotiator.language(Object.keys(messages[error.keyword]))
+      }
+
+      // Fall back to English when the preferred language is unavailable.
+      if (!language) {
+        debug(
+          'No messages available for "%s %s" in %s, falling back to %s',
+          error.type,
+          error.keyword,
+          negotiator.languages().join(', '),
+          fallback
+        )
+
+        language = fallback
+      }
+
+      var message = messages[error.keyword][language]
+
+      if (!message) {
+        debug(
+          'No messages available for "%s %s", create a "%s" message as the fallback',
+          error.type,
+          error.keyword,
+          fallback
+        )
+
+        return error
+      }
+
+      return extend(error, { message: message(error) })
+    })
+
+    res.statusCode = err.status || err.statusCode || 500
+    res.setHeader('X-Content-Type-Options', 'nosniff')
+
+    return respond(req, res, data, stack)
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+**Osprey** comes with support for a built-in [error handler middleware](https://github.com/mulesoft-labs/node-request-error-handler
+) that formats request errors for APIs. It comes with built-in i18n with some languages already included for certain formats ([_help
+ us add more!_](https://github.com/mulesoft-labs/node-request-error-handler/pulls)). The default fallback language is `en` and the
+ default responder renders JSON, XML, HTML and plain text - all options are overridable.
+
+```js
+var osprey = require('osprey')
+var app = require('express')()
+
+// It's best to use the default responder, but it's overridable if you need it.
+app.use(osprey.<span class="apidocCodeKeywordSpan">errorHandler</span>(function (req, res, errors, stack) { /* Override */ }, &amp;#
+x27;en'))
+```
+
+You can override the i18n messages or provide your own by passing a nested object that conforms to the following interface:
+
+```js
+interface CustomMessages {
+[type: string]: {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.errorHandler.createError" id="apidoc.element.osprey.errorHandler.createError">
+        function <span class="apidocSignatureSpan">osprey.errorHandler.</span>createError
+        <span class="apidocSignatureSpan">(requestErrors, status)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createError(requestErrors, status) {
+  invariant(Array.isArray(requestErrors), 'Argument requestErrors must be an array')
+
+  // Validate request error objects.
+  requestErrors.forEach(function (requestError) {
+    invariant(typeof requestError === 'object', 'Request errors must be an object')
+    invariant(typeof requestError.type === 'string', 'Request errors must have a type string')
+    invariant(typeof requestError.keyword === 'string', 'Request errors must have a type string')
+    invariant(typeof requestError.message === 'string', 'Request errors must have a message string to fallback on when i18n fails
+')
+  })
+
+  var err = new Error('Request Error')
+  err.status = err.statusCode = status || 400
+  err.requestErrors = requestErrors
+  return err
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.errorHandler.responder" id="apidoc.element.osprey.errorHandler.responder">
+        function <span class="apidocSignatureSpan">osprey.errorHandler.</span>responder
+        <span class="apidocSignatureSpan">(req, res, errors, stack)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function responder(req, res, errors, stack) {
+  var negotiator = new Negotiator(req)
+
+  switch (negotiator.mediaType(['application/json', 'text/html', 'text/xml'])) {
+    case 'application/json':
+      sendJson(req, res, errors, stack)
+      return
+    case 'text/html':
+      sendHtml(req, res, errors, stack)
+      return
+    case 'text/xml':
+      sendXml(req, res, errors, stack)
+      return
+    default:
+      sendPlain(req, res, errors, stack)
+      return
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.osprey.errorHandler.createError" id="apidoc.module.osprey.errorHandler.createError">module osprey.errorHandler.createError</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.errorHandler.createError.createError" id="apidoc.element.osprey.errorHandler.createError.createError">
+        function <span class="apidocSignatureSpan">osprey.errorHandler.</span>createError
+        <span class="apidocSignatureSpan">(requestErrors, status)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createError(requestErrors, status) {
+  invariant(Array.isArray(requestErrors), 'Argument requestErrors must be an array')
+
+  // Validate request error objects.
+  requestErrors.forEach(function (requestError) {
+    invariant(typeof requestError === 'object', 'Request errors must be an object')
+    invariant(typeof requestError.type === 'string', 'Request errors must have a type string')
+    invariant(typeof requestError.keyword === 'string', 'Request errors must have a type string')
+    invariant(typeof requestError.message === 'string', 'Request errors must have a message string to fallback on when i18n fails
+')
+  })
+
+  var err = new Error('Request Error')
+  err.status = err.statusCode = status || 400
+  err.requestErrors = requestErrors
+  return err
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.osprey.errorHandler.responder" id="apidoc.module.osprey.errorHandler.responder">module osprey.errorHandler.responder</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.errorHandler.responder.responder" id="apidoc.element.osprey.errorHandler.responder.responder">
+        function <span class="apidocSignatureSpan">osprey.errorHandler.</span>responder
+        <span class="apidocSignatureSpan">(req, res, errors, stack)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function responder(req, res, errors, stack) {
+  var negotiator = new Negotiator(req)
+
+  switch (negotiator.mediaType(['application/json', 'text/html', 'text/xml'])) {
+    case 'application/json':
+      sendJson(req, res, errors, stack)
+      return
+    case 'text/html':
+      sendHtml(req, res, errors, stack)
+      return
+    case 'text/xml':
+      sendXml(req, res, errors, stack)
+      return
+    default:
+      sendPlain(req, res, errors, stack)
+      return
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.osprey.loadFile" id="apidoc.module.osprey.loadFile">module osprey.loadFile</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.loadFile.loadFile" id="apidoc.element.osprey.loadFile.loadFile">
+        function <span class="apidocSignatureSpan">osprey.</span>loadFile
+        <span class="apidocSignatureSpan">(path, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">loadFile = function (path, opts) {
+  var options = opts || {}
+
+  return require('raml-1-parser')
+    .loadRAML(path, { rejectOnErrors: true })
+    .then(function (ramlApi) {
+      var raml = ramlApi.expand(true).toJSON({
+        serializeMetadata: false
+      })
+      var middleware = []
+      var handler = server(raml, extend({ RAMLVersion: ramlApi.RAMLVersion() }, options.server))
+      var error = errorHandler(options.errorHandler)
+
+      if (options.security) {
+        middleware.push(security(raml, options.security))
+      }
+
+      middleware.push(handler)
+
+      if (!options.disableErrorInterception) {
+        middleware.push(error)
+      }
+
+      var result = compose(middleware)
+      result.ramlUriParameters = handler.ramlUriParameters
+      return result
+    })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var join = require('path').join
+var app = express()
+
+var path = join(__dirname, 'assets', 'api.raml')
+
+// Be careful, this uses all middleware functions by default. You might just
+// want to use each one separately instead - `osprey.server`, etc.
+osprey.<span class="apidocCodeKeywordSpan">loadFile</span>(path)
+  .then(function (middleware) {
+app.use(middleware)
+
+app.use(function (err, req, res, next) {
+  // Handle errors.
+})
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.osprey.proxy" id="apidoc.module.osprey.proxy">module osprey.proxy</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.proxy.proxy" id="apidoc.element.osprey.proxy.proxy">
+        function <span class="apidocSignatureSpan">osprey.</span>proxy
+        <span class="apidocSignatureSpan">(middleware, addresses)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createProxy(middleware, addresses) {
+  var fns = []
+
+  var addrs = arrify(addresses).map(function (address) {
+    var addr = url.format(address)
+
+    // Remove any trailing slashes from the address.
+    addr = addr.replace(/\/$/, '')
+
+    return /^\w+:\/\//.test(addr) ? addr : 'http://' + addr
+  })
+
+  fns.push(middleware)
+
+  fns.push(function proxyAddress (req, res, next) {
+    var addr = addrs.shift()
+    var opts = url.parse(addr + req.url)
+
+    // Push the address back onto the array.
+    addrs.push(addr)
+
+    // Proxy request headers (minus now invalid content-length).
+    opts.method = req.method
+    opts.headers = req.headers
+
+    if (req.form) {
+      var formData = new FormData()
+
+      req.form.on('file', function (name, stream, filename, encoding, type) {
+        formData.append(name, stream, {
+          filename: filename,
+          contentType: type
+        })
+      })
+
+      req.form.on('field', function (name, value) {
+        formData.append(name, value)
+      })
+
+      req.form.on('finish', function () {
+        // Remove the old `Content-Type` header which has an invalid boundary.
+        delete req.headers['content-type']
+        delete req.headers['content-length']
+
+        // Add form data boundary and content length headers.
+        opts.headers = formData.getHeaders(req.headers)
+
+        return formData.pipe(proxyRequest(opts, res, next))
+      })
+
+      req.form.on('error', next)
+
+      return req.pipe(req.form)
+    }
+
+    var proxy = proxyRequest(opts, res, next)
+
+    if (req.body) {
+      var body = ''
+
+      if (is(req, 'urlencoded')) {
+        body = querystring.stringify(req.body)
+      } else if (is(req, 'json')) {
+        body = JSON.stringify(req.body)
+      } else {
+        // Support XML throughput.
+        body = req.body
+      }
+
+      opts.headers['content-length'] = String(Buffer.byteLength(body))
+      proxy.write(body)
+      proxy.end()
+      return
+    }
+
+    return req._readableState.ended ? proxy.end() : req.pipe(proxy)
+  })
+
+  return createHttpHandler(compose(fns))
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+})
+```
+
+### Proxy
+
+```js
+osprey.<span class="apidocCodeKeywordSpan">proxy</span>(middleware, addresses)
+```
+
+Pass in an Osprey middleware function with an array of addresses to proxy to and you have a fully-functioning validation and/or
+security proxy.
+
+## License
+
+Apache 2.0
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.osprey.security" id="apidoc.module.osprey.security">module osprey.security</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.security.security" id="apidoc.element.osprey.security.security">
+        function <span class="apidocSignatureSpan">osprey.</span>security
+        <span class="apidocSignatureSpan">(raml, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createSecurity(raml, opts) {
+  var middleware = []
+  var options = extend(opts)
+  var authenticate = {}
+
+  // Create scheme handlers from RAML.
+  if (Array.isArray(raml.securitySchemes)) {
+    raml.securitySchemes.forEach(function (schemes) {
+      Object.keys(schemes).forEach(function (key) {
+        var scheme = schemes[key]
+        var handlerOptions = options[key]
+
+        if (!handlerOptions) {
+          console.warn('No options configured for security scheme "%s"', key)
+          return
+        }
+
+        var res = handler(scheme, handlerOptions, key)
+
+        invariant(
+          res &amp;&amp; typeof res.handler === 'function',
+          'Security schemes must provide a `handler` function that can ' +
+          'accept  options and return middleware for securing resources'
+        )
+
+        // Alias the handler for creating authentication middleware.
+        authenticate[key] = res.handler
+
+        // Mount routers in order of security schemes.
+        // Note: Not all schemes need a router. E.g. "Basic Authentication".
+        if (res.router) {
+          middleware.push(res.router)
+        }
+      })
+    })
+  }
+
+  middleware.push(resources(raml.resources, function (method, path) {
+    var securedBy = method.securedBy || raml.securedBy
+
+    if (!Array.isArray(securedBy) || securedBy.length === 0) {
+      return
+    }
+
+    var handlers = []
+    var anonymous = false
+    var middleware
+
+    for (var i = 0; i &lt; securedBy.length; i++) {
+      var secured = securedBy[i]
+
+      // Support anonymous access.
+      if (secured == null) {
+        anonymous = true
+        continue
+      }
+
+      // Handle the basic case of a security string.
+      if (typeof secured === 'string') {
+        if (authenticate.hasOwnProperty(secured)) {
+          middleware = compose(authenticate[secured](null, path))
+
+          handlers.push(middleware)
+        } else {
+          debug('Path "%s" not secured with "%s"', path, secured)
+        }
+        continue
+      }
+
+      // Support more complex object options.
+      Object.keys(secured).forEach(function (key) {
+        if (authenticate.hasOwnProperty(key)) {
+          middleware = compose(authenticate[key](secured[key], path))
+
+          handlers.push(middleware)
+        } else {
+          debug('Path "%s" not secured with "%s"', path, key)
+        }
+      })
+    }
+
+    // Create a single middleware from an array of handlers.
+    return authenticationStack(handlers, anonymous)
+  }))
+
+  return compose(middleware)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+**Want to format your own request errors?** If you emit an error with a `.status` property of "client error" (`400` - `
+499`) and an array of `requestErrors`, it will automatically be rendered as the API response (using `status` as the response status
+ code).
+
+### Security
+
+```js
+osprey.<span class="apidocCodeKeywordSpan">security</span>(raml, options)
+```
+
+Osprey accepts an options object that maps object keys to the security scheme name in the RAML definition.
+
+#### OAuth 2.0
+
+Provided by [OAuth2orize](https://github.com/jaredhanson/oauth2orize) and [Passport](https://github.com/jaredhanson/passport).
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.security.scope" id="apidoc.element.osprey.security.scope">
+        function <span class="apidocSignatureSpan">osprey.security.</span>scope
+        <span class="apidocSignatureSpan">(scope)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function enforceScope(scope) {
+  var scopes = arrify(scope)
+
+  if (scopes.length === 0) {
+    throw new TypeError('Expected a scope or array of scopes, but got: ' + scope)
+  }
+
+  return function scope (req, res, next) {
+    var userScopes = arrify(req.authInfo.scope)
+
+    // Find one scope the user has and authorize access.
+    for (var i = 0; i &lt; scopes.length; i++) {
+      if (userScopes.indexOf(scopes[i]) &gt; -1) {
+        return next()
+      }
+    }
+
+    return next(new TokenError('User unsupported scope: ' + scopes, 'invalid_scope'))
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+**Osprey** will automatically block requests with invalid scopes, when defined in RAML using the [inline option](https://github.
+com/raml-org/raml-spec/blob/master/raml-0.8.md#usage-applying-a-security-scheme-to-an-api) syntax.
+
+```raml
+/example:
+  securedBy: [oauth_2_0: { scopes: [ ADMINISTRATOR ] } ]
+```
+
+To implement scope validation in your own application, without RAML, use `osprey.security.<span class="apidocCodeKeywordSpan">scope
+</span>('example')` and users without the required scope will be rejected.
+
+```js
+app.get('/foo/bar', osprey.security.scope('example'), function (req, res) {
+  res.send('hello, world')
+})
+```
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.osprey.security.scope" id="apidoc.module.osprey.security.scope">module osprey.security.scope</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.security.scope.scope" id="apidoc.element.osprey.security.scope.scope">
+        function <span class="apidocSignatureSpan">osprey.security.</span>scope
+        <span class="apidocSignatureSpan">(scope)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function enforceScope(scope) {
+  var scopes = arrify(scope)
+
+  if (scopes.length === 0) {
+    throw new TypeError('Expected a scope or array of scopes, but got: ' + scope)
+  }
+
+  return function scope (req, res, next) {
+    var userScopes = arrify(req.authInfo.scope)
+
+    // Find one scope the user has and authorize access.
+    for (var i = 0; i &lt; scopes.length; i++) {
+      if (userScopes.indexOf(scopes[i]) &gt; -1) {
+        return next()
+      }
+    }
+
+    return next(new TokenError('User unsupported scope: ' + scopes, 'invalid_scope'))
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+**Osprey** will automatically block requests with invalid scopes, when defined in RAML using the [inline option](https://github.
+com/raml-org/raml-spec/blob/master/raml-0.8.md#usage-applying-a-security-scheme-to-an-api) syntax.
+
+```raml
+/example:
+  securedBy: [oauth_2_0: { scopes: [ ADMINISTRATOR ] } ]
+```
+
+To implement scope validation in your own application, without RAML, use `osprey.security.<span class="apidocCodeKeywordSpan">scope
+</span>('example')` and users without the required scope will be rejected.
+
+```js
+app.get('/foo/bar', osprey.security.scope('example'), function (req, res) {
+  res.send('hello, world')
+})
+```
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.osprey.server" id="apidoc.module.osprey.server">module osprey.server</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.server.server" id="apidoc.element.osprey.server.server">
+        function <span class="apidocSignatureSpan">osprey.</span>server
+        <span class="apidocSignatureSpan">(raml, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createServer(raml, opts) {
+  var options = opts || {}
+
+  if (raml.hasOwnProperty('types')) {
+    raml = expandTypes(raml)
+  }
+
+  var resourceHandler = resources(raml.resources, function (schema, path) {
+    return handler(schema, path, schema.method, options)
+  })
+
+  var app = router({ ramlUriParameters: resourceHandler.ramlUriParameters, RAMLVersion: options.RAMLVersion })
+  var corsOpts = typeof options.cors === 'boolean' ? undefined : options.cors
+
+  if (options.cors) {
+    var cors = require('cors')
+
+    app.options('*', cors(corsOpts))
+    app.use(cors(corsOpts))
+  }
+
+  if (options.compression) {
+    var compression = require('compression')
+
+    app.use(compression())
+  }
+
+  app.use(resourceHandler)
+
+  if (options.notFoundHandler !== false) {
+    app.use(notFoundHandler)
+  }
+
+  return app
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+**Please note:** The middleware function does not use the RAML `baseUri`. Make sure you mount the application under the correct
+path. E.g. `app.use('/v1', middleware)`.
+
+**Please note:** `osprey.loadFile` is shorthand for `ramlParser.loadFile -&gt; [osprey.security, osprey.server, osprey.errorHandler
+]`.
+
+### Server (Resource Handling)
+
+```js
+var handler = osprey.<span class="apidocCodeKeywordSpan">server</span>(raml, options)
+
+console.log(handler) //=&gt; function (req, res, next) {}
+
+console.log(handler.ramlUriParameters) //=&gt; {} // A merged object of used URI parameters.
+```
+
+Undefined API requests will _always_ be rejected with a 404.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.server.notFoundHandler" id="apidoc.element.osprey.server.notFoundHandler">
+        function <span class="apidocSignatureSpan">osprey.server.</span>notFoundHandler
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function notFoundHandler(req, res, next) {
+  // Check for existence of the method handler.
+  if (req.resourcePath) {
+    return next()
+  }
+
+  var notFoundError = new Error(
+    req.method + ' ' + parseurl(req).pathname +
+    ' does not exist in the RAML for this application'
+  )
+
+  notFoundError.ramlNotFound = true
+  notFoundError.status = notFoundError.statusCode = 404
+
+  return next(notFoundError)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.osprey.server.notFoundHandler" id="apidoc.module.osprey.server.notFoundHandler">module osprey.server.notFoundHandler</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.osprey.server.notFoundHandler.notFoundHandler" id="apidoc.element.osprey.server.notFoundHandler.notFoundHandler">
+        function <span class="apidocSignatureSpan">osprey.server.</span>notFoundHandler
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function notFoundHandler(req, res, next) {
+  // Check for existence of the method handler.
+  if (req.resourcePath) {
+    return next()
+  }
+
+  var notFoundError = new Error(
+    req.method + ' ' + parseurl(req).pathname +
+    ' does not exist in the RAML for this application'
+  )
+
+  notFoundError.ramlNotFound = true
+  notFoundError.status = notFoundError.statusCode = 404
+
+  return next(notFoundError)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
